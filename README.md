@@ -1,5 +1,6 @@
 # simpleSpringboot
 我的第一个springboot框架学习
+#详解
 1.最简单的pom文件，继承starter。
 2.Application.java的@SpringBootApplication注解指定程序的入口，内嵌了tomcat，Jetty。
 3.@Bean在容器中定义bean。
