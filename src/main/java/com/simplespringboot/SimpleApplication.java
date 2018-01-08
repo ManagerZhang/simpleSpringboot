@@ -1,6 +1,7 @@
 package com.simplespringboot;
 
 import com.simplespringboot.runner.SimpleRunner;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Bean;
  * @date 2018-01-05.
  */
 @SpringBootApplication
+@MapperScan("com.simplespringboot.dao")
 public class SimpleApplication {
 	/**
 	 * 容器启动
@@ -20,7 +22,7 @@ public class SimpleApplication {
 	}
 
 	/**
-	 * 定义bean
+	 * 定义测试Runner bean
 	 * @return
 	 */
 	@Bean
