@@ -1,0 +1,19 @@
+1.下载安装包http://hadoop.apache.org/zookeeper/并解压。
+2.修改配置文件：
+在zookeeper下存在conf文件夹，里面有zoo_sample.cfg配置文件，将此配置文件进行修改。
+tickTime = 2000.这个时间是作为zookeeper服务器之间或客户端与服务器之间维持心跳的时间间隔，也就是每隔tickTime时间就会发一个心跳。
+dataDir = D:/devtools/zookeeper-3.2.2/data.此目录为zookeeper保存数据的目录，默认情况下，zookeeper将写数据的日志文件也保存在此目录。
+clientPort = 2181.这个端口就是客户端连接zookeeper服务器的端口，zookeeper会监听这个端口，接受客户端的访问请求。
+--------------------------------------------------------------------------------
+至此单机模式的zookeeper已经配置完成。集群模式还需完成以下配置。
+initLimit = 10.这个配置用来配置zookeeper接受客户端(这里所说的客户端不是用户连接Zookeeper服务器的客户端，而是Zookeeper服务器集群中连接到leader的follower服务器)初始化连接时最长能忍受多少个心跳时间间隔数
+syncLimit = 5.这个配置项标识Leader和Follower之间发送消息，请求和应答时间长度，最长不能超过多少个tickTime的时间长度。
+server.A = B : C : D.其中A标识几号服务器，B标识服务器的ip地址，C标识这个服务器与集群中的Leader服务器交换信息的端口，D标识万一集群中的Leader服务器挂了，需要一个端口重新进行选举，选出一个新的Leader，这个端口就是用来执行选举时服务器相互通信的端口。
+伪集群模式中因为配置服务器的ip地址是相同的，所以要保证服务器的端口不能相同。
+在设置的dataDir中新增一个myid文件，用于保存此服务器为几号服务器，其保存的值与server配置A的值。
+3.启动服务器.
+1.windows下使用cmd命令进入zookeeper的bin目录，使用zkServer.cmd启动服务器。
+2.集群模式下，在服务器没有全部启动时会报错，这是正常的，因为集群中其它的Zk还未起来，Zk集群之间的心跳检测未检测到其它Zk，等集群中所有的Zk都启动后，就不会报错了。如果Linux环境使用zkServer.sh start来启动。
+4.验证服务器.
+可以通过Zookeeper的客户端来验证，使用zkCli.cmd来启动，然后通过ls命令列出ZK指定节点下的所有子节点来验证Zk已经启动完成。
+

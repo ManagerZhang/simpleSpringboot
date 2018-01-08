@@ -1,0 +1,8 @@
+1.下载dubbox安装包 ，下载地址为：
+https://github.com/dangdangdotcom/dubbox
+2.解压压缩包到指定路径.
+3.将解压后的文件进行maven编译：
+mvn install -Dmaven.test.skip=true
+4.编译完成后，进入dubbo-admin/target中，存在dubbo-admin的war包，重新搞一个tomcat放到指定目录，清空tomcat中webapp文件夹的内容，将dubbo-admin的war包放到webapp下。进入toncat的斌目录下，使用startup.bat命令启动tomcat。
+5.tomcat启动后会在webapp目录下生成dubbo-admin的文件夹，进入此文件夹下的WEB-INF目录，存在dubbo.properties配置文件，将address配置修改为zookeeper中配置的server的ip。
+6.打开浏览器。输入http://localhost:8080/dubbo-admin-2.8.4/，账户密码是root/root.就可以看到页面了
