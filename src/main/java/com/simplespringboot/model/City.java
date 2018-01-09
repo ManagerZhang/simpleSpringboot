@@ -1,12 +1,15 @@
 package com.simplespringboot.model;
 
+import java.io.Serializable;
+
 /**
  * 城市实体类
  * @author zhangke
  * @date 2018-01-05.
  */
-public class City {
-	/**
+public class City implements Serializable{
+
+	 /**
 	 * 城市编号
 	 */
 	private Long id;
@@ -57,5 +60,4 @@ public class City {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 }
